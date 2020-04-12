@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class box : MonoBehaviour
 {	public int speed = 10;
@@ -11,13 +12,26 @@ public class box : MonoBehaviour
     }
 
     // Update is called once per frame
+    
     void Update()
     {
         
     }
-    void OnCollisionEnter2D(Collision2D other){
-    	if(other.collider.name=="Kanan" || other.collider.name=="Kiri"){
-    		GetComponent<Transform>().position = new Vector2(0,0);
-    	}
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        
+        if(other.collider.name == "Kanan" || other.collider.name == "Kiri"){
+            StartCoroutine(CountDown());
+            GetComponent<Transform>().position = new Vector2(0,0);
+            
+        }
+    }
+
+    IEnumerator CountDown()
+    {
+        
+        yield return new WaitForSeconds(1);
+        
     }
 }
